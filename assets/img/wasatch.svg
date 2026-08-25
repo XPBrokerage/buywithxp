@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 420" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+  <defs>
+    <linearGradient id="ridgeFar" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#E8EBF1" stop-opacity="0.9"/>
+      <stop offset="0.75" stop-color="#E8EBF1" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#E8EBF1" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="ridgeMid" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#D4DAE6" stop-opacity="0.9"/>
+      <stop offset="0.78" stop-color="#D4DAE6" stop-opacity="0.3"/>
+      <stop offset="1" stop-color="#D4DAE6" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="ridgeNear" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#BFC8D8" stop-opacity="0.95"/>
+      <stop offset="0.8" stop-color="#BFC8D8" stop-opacity="0.25"/>
+      <stop offset="1" stop-color="#BFC8D8" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <!-- far range: soft, low, rolling -->
+  <path fill="url(#ridgeFar)" d="M0,240 L90,214 L170,232 L260,196 L340,222 L430,188 L520,212 L610,178 L700,204 L790,168 L880,196 L960,150 L1050,186 L1140,164 L1230,192 L1320,172 L1440,198 L1440,420 L0,420 Z"/>
+  <!-- mid range: one dominant peak right of center -->
+  <path fill="url(#ridgeMid)" d="M0,300 L110,268 L200,288 L300,244 L390,276 L480,236 L570,264 L660,222 L750,252 L840,196 L935,96 L1010,176 L1080,150 L1170,214 L1260,190 L1350,226 L1440,206 L1440,420 L0,420 Z"/>
+  <!-- near range: darker, lower, broad shoulders -->
+  <path fill="url(#ridgeNear)" d="M0,362 L120,334 L230,352 L330,312 L440,344 L560,300 L660,332 L780,286 L890,324 L1000,272 L1100,318 L1210,290 L1320,330 L1440,302 L1440,420 L0,420 Z"/>
+</svg>
