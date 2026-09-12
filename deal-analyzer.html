@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Business Acquisition Calculator: Can This Business Pay You and the Bank? | buywithXP</title>
+<meta name="description" content="Free business acquisition calculator and deal analyzer. Enter asking price and earnings to get SDE, SBA debt service, DSCR and a buy / negotiate / walk verdict. Download the full Excel deal analyzer with seller-note scenarios and an E-2 visa screen.">
+<link rel="canonical" href="https://buywithxp.com/deal-analyzer">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"SMB Deal Analyzer","applicationCategory":"FinanceApplication","operatingSystem":"Excel, Google Sheets","offers":{"@type":"Offer","price":"79","priceCurrency":"USD","url":"https://shop.buywithxp.com/product-details/product/smb-deal-analyzer","availability":"https://schema.org/InStock"},"publisher":{"@type":"Organization","name":"XP M&A Advisory","url":"https://buywithxp.com"}}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--xp-midnight:#1B2A4A;--xp-steel:#4A4A4A;--xp-gold:#C9A84C;--xp-gold-text:#926D10;--xp-mist:#F4F5F7;--xp-tint:#E8EBF1;--xp-border:#D9DBE0;--xp-ink:#2A2A2A;--xp-white:#fff}
+*{box-sizing:border-box}
+body{margin:0;font-family:Roboto,Arial,sans-serif;color:var(--xp-ink);background:var(--xp-white);line-height:1.55;font-size:17px}
+h1,h2,h3{font-family:Montserrat,Inter,Arial,sans-serif;color:var(--xp-midnight);font-weight:700;line-height:1.15;margin:0 0 .5rem}
+h1{font-size:clamp(1.9rem,4.5vw,3rem);max-width:22ch}
+h2{font-size:1.5rem;margin-top:0}
+p{margin:0 0 1rem;max-width:62ch}
+.wrap{max-width:1040px;margin:0 auto;padding:0 1.25rem}
+.bar{background:var(--xp-midnight);color:#fff;padding:.9rem 0}
+.bar .wrap{display:flex;justify-content:space-between;align-items:center;font-family:Montserrat,sans-serif;font-weight:600}
+.bar a{color:#fff;text-decoration:none;font-weight:400;font-family:Roboto,sans-serif;font-size:.95rem}
+.bar .brand{font-family:Montserrat,sans-serif;font-weight:600;font-size:1rem;display:flex;align-items:center;gap:.6rem}
+.bar .mark{font-weight:700;font-size:1.25rem;border-bottom:3px solid var(--xp-gold);padding-bottom:1px;line-height:1}
+.bar nav{display:flex;gap:1.4rem;align-items:center}
+.bar nav .cta{background:var(--xp-gold);color:var(--xp-midnight);font-family:Montserrat,sans-serif;font-weight:700;padding:.45rem .95rem;border-radius:6px}
+@media(max-width:640px){.bar nav a:not(.cta){display:none}}
+.hero{padding:3rem 0 2rem}
+.hero p.lead{font-size:1.15rem;color:var(--xp-steel)}
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--xp-border);margin:1.5rem 0 2.5rem}
+.calc .in{padding:1.5rem;background:var(--xp-mist)}
+.calc .out{padding:1.5rem;background:var(--xp-midnight);color:#fff}
+.calc label{display:block;font-size:.9rem;color:var(--xp-steel);margin:.7rem 0 .25rem}
+.calc input{width:100%;padding:.6rem .7rem;border:1px solid var(--xp-border);border-radius:3px;font:inherit;font-size:1rem}
+.calc input:focus{outline:2px solid var(--xp-gold);outline-offset:1px}
+.out .row{display:flex;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.15);padding:.55rem 0;font-size:.98rem}
+.out .row span:last-child{font-family:Montserrat,sans-serif;font-weight:600}
+.verdict{margin-top:1.25rem;font-family:Montserrat,sans-serif;font-weight:700;font-size:1.35rem;color:var(--xp-gold)}
+.verdict small{display:block;font-family:Roboto,sans-serif;font-weight:400;font-size:.9rem;color:#fff;opacity:.85;margin-top:.3rem}
+.btn{display:inline-block;background:var(--xp-gold);color:var(--xp-midnight);font-family:Montserrat,sans-serif;font-weight:700;padding:.85rem 1.6rem;border-radius:4px;text-decoration:none;font-size:1.05rem}
+.btn:focus{outline:3px solid var(--xp-midnight);outline-offset:2px}
+.btn--alt{background:var(--xp-midnight);color:#fff}
+section{padding:2.25rem 0;border-top:1px solid var(--xp-border)}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem 2.5rem}
+.cols h3{font-size:1.05rem;margin-bottom:.3rem}
+.cols p{font-size:.98rem;color:var(--xp-steel)}
+.price{background:var(--xp-tint);border-left:4px solid var(--xp-gold);padding:1.5rem;margin:1rem 0}
+.price .amt{font-family:Montserrat,sans-serif;font-size:2.2rem;font-weight:700;color:var(--xp-midnight)}
+.price ul{margin:.5rem 0 1.25rem;padding-left:1.2rem;color:var(--xp-steel)}
+.email{display:flex;gap:.5rem;max-width:520px;flex-wrap:wrap}
+.email input{flex:1;min-width:220px;padding:.7rem;border:1px solid var(--xp-border);border-radius:3px;font:inherit}
+.faq h3{font-size:1.05rem;margin-top:1.25rem}
+.faq p{color:var(--xp-steel)}
+footer{background:var(--xp-midnight);color:#fff;padding:1.5rem 0;font-size:.9rem;margin-top:2rem}
+footer p{color:#fff;opacity:.85;max-width:none}
+footer a{color:#fff}
+@media (max-width:720px){.calc{grid-template-columns:1fr}.hero{padding-top:2rem}}
+@media (prefers-reduced-motion:no-preference){.verdict{transition:color .2s}}
+</style>
+</head>
+<body>
+<div class="bar"><div class="wrap"><a class="brand" href="https://buywithxp.com/"><span class="mark">XP</span> M&amp;A Advisory</a><nav><a href="https://buywithxp.com/#modeler">Growth modeler</a><a href="https://buywithxp.com/#process">Process</a><a class="cta" href="https://link.xpbrokerage.com/widget/booking/pgVJoAKfgSOK0nm5IGpU">Book a call</a></nav></div></div>
+
+<main class="wrap">
+<div class="hero">
+  <h1>Can this business pay you and the bank?</h1>
+  <p class="lead">Enter the numbers from any business-for-sale listing. In thirty seconds you'll see the real multiple, the SBA payment, and whether the deal covers your salary with room to spare.</p>
+
+  <div class="calc" id="calc">
+    <div class="in">
+      <label for="price">Asking price ($)</label><input id="price" type="number" value="1200000" inputmode="numeric">
+      <label for="sde">Seller's discretionary earnings, SDE ($/yr)</label><input id="sde" type="number" value="412000" inputmode="numeric">
+      <label for="salary">Salary you need ($/yr)</label><input id="salary" type="number" value="95000" inputmode="numeric">
+      <label for="down">Cash down (%)</label><input id="down" type="number" value="10" min="0" max="100">
+      <label for="note">Seller note (%)</label><input id="note" type="number" value="10" min="0" max="90">
+      <label for="rate">SBA 7(a) rate (%)</label><input id="rate" type="number" value="10.5" step="0.1">
+    </div>
+    <div class="out" aria-live="polite">
+      <div class="row"><span>Price / SDE multiple</span><span id="o_mult">–</span></div>
+      <div class="row"><span>SBA loan (with 3% fee)</span><span id="o_loan">–</span></div>
+      <div class="row"><span>Annual debt service</span><span id="o_debt">–</span></div>
+      <div class="row"><span>Debt service coverage (DSCR)</span><span id="o_dscr">–</span></div>
+      <div class="row"><span>Cash left after salary and debt</span><span id="o_left">–</span></div>
+      <div class="row"><span>Max price at 1.25x DSCR</span><span id="o_max">–</span></div>
+      <div class="verdict" id="o_verdict">–<small id="o_why"></small></div>
+    </div>
+  </div>
+
+  <p>That's the screen. The full analyzer does the part that decides whether you actually close: normalizing the seller's add-backs, sizing working capital and closing costs into your real cash-to-close, testing three seller-note structures, and a sensitivity grid that shows how far price or earnings can slip before the loan breaks.</p>
+  <a class="btn" href="https://shop.buywithxp.com/product-details/product/smb-deal-analyzer">Get the full Deal Analyzer, $79</a>
+</div>
+
+<section>
+  <h2>What's in the workbook</h2>
+  <div class="cols">
+    <div><h3>A one-screen dashboard</h3><p>The verdict, coverage, cash to close, cash left, and your walk-away price &mdash; five numbers, colour-coded, before you read anything else. Every one traces back to the inputs.</p></div>
+    <div><h3>Earnings normalization</h3><p>Owner comp, perks, family payroll, one-time items and rent adjustments, producing SDE and Adjusted EBITDA the way a lender's underwriter and a buyer's QofE will compute them.</p></div>
+    <div><h3>Sources and uses</h3><p>Equity, SBA 7(a) loan with the guarantee fee financed, seller note, working capital, capex and closing costs. Your total cash to close, which is never the down payment.</p></div>
+    <div><h3>Coverage and returns</h3><p>DSCR, cash-on-cash, payback, break-even SDE, and the maximum price that still hits your minimum coverage. That last number is your walk-away price in a negotiation.</p></div>
+    <div><h3>Sensitivity grid</h3><p>DSCR across nine price points and seven earnings outcomes, colored so you can see the edge of the deal at a glance.</p></div>
+    <div><h3>Seller note scenarios</h3><p>No note, moderate note, heavy note. Side by side: cash down, debt service, coverage and return, so you know what to ask the seller for.</p></div>
+    <div><h3>E-2 visa screen</h3><p>For treaty-country buyers: proportionality, funds at risk, source of funds and the marginality test, with a read you can bring to immigration counsel before you spend on a business plan.</p></div>
+    <div><h3>Industry multiples</h3><p>Directional SDE and EBITDA ranges for twenty common small-business categories, so you know when an asking price is outside the market. For a read on actual comparable transactions in your target's industry, <a href="/deal-analysis" style="color:var(--xp-gold-text);font-weight:600">XP runs a deal-specific analysis</a>.</p></div>
+    <div><h3>Works in Excel and Google Sheets</h3><p>No macros, no add-ins. Blue cells are yours to change; everything else is a live formula you can trace. Finance-standard colour convention, print-ready. Instant download after checkout.</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>Price</h2>
+  <div class="price">
+    <div class="amt">$79</div>
+    <ul>
+      <li>SMB Deal Analyzer workbook (.xlsx), Google Sheets compatible</li>
+      <li>Example deal pre-loaded so you can see the expected inputs</li>
+      <li>Free updates when SBA fee tiers or rate assumptions change</li>
+      <li>Use on unlimited deals. Single-buyer license.</li>
+    </ul>
+    <a class="btn" href="https://shop.buywithxp.com/product-details/product/smb-deal-analyzer">Buy the Deal Analyzer</a>
+    <p style="margin:.9rem 0 0;font-size:.9rem;color:var(--xp-steel)">Digital product, delivered instantly. All sales are final.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Not ready to buy? Take the checklist.</h2>
+  <p>Our one-page due-diligence checklist for buying a business under $5M: the 38 documents to request and the six add-backs sellers most often overstate.</p>
+  <form class="email" id="checklist" novalidate>
+    <div style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden" aria-hidden="true">
+      <label for="cl-company-url">Company website</label>
+      <input type="text" id="cl-company-url" name="company_url" tabindex="-1" autocomplete="off">
+    </div>
+    <input type="text" name="first_name" placeholder="First name" required aria-label="First name" autocomplete="given-name" style="flex:0 1 160px;min-width:140px">
+    <input type="email" name="email" placeholder="you@example.com" required aria-label="Email address" autocomplete="email">
+    <button class="btn btn--alt" type="submit">Send the checklist</button>
+  </form>
+  <p id="checklist-done" style="display:none;color:var(--xp-midnight);font-weight:500">On its way. Check your inbox in a minute or two.</p>
+</section>
+
+<section class="faq">
+  <h2>Questions buyers ask</h2>
+  <p style="color:var(--xp-steel)">New to acquisition financing? Start with <a href="/how-to-finance-buying-a-business" style="color:var(--xp-gold-text);font-weight:600">how to finance buying a business</a> — the three sources of money, and the one number every lender checks first.</p>
+  <h3>What is SDE and why not just use net income?</h3>
+  <p>Seller's discretionary earnings is net income with interest, taxes, depreciation, the owner's full compensation and personal expenses added back. It is what one owner-operator can take out of the business. Listings quote it because it is the largest defensible number; the analyzer recomputes it so you can see which add-backs are real.</p>
+  <h3>What DSCR do SBA lenders want?</h3>
+  <p>Most look for 1.25x or better on historical cash flow after a reasonable salary for you. The calculator above uses 1.25x to solve for your maximum price.</p>
+  <h3>Does a seller note count as my equity injection?</h3>
+  <p>Only if it is on full standby for the term of the SBA loan, and only up to half of the required injection under current rules. Confirm structure with your lender before you sign a letter of intent.</p>
+  <h3>Is the E-2 screen legal advice?</h3>
+  <p>No. It checks whether the numbers fall in a credible range for the substantial, at-risk and non-marginal tests. A licensed immigration attorney makes the call.</p>
+  <h3>Who built this?</h3>
+  <p>XP M&amp;A Advisory. We work with acquirers on the buy side, and this is the model we run on every deal before a client makes an offer. The free calculator above is the first screen; the workbook is the rest of it.</p>
+</section>
+</main>
+
+<footer><div class="wrap">
+  <p>XP M&amp;A Advisory &nbsp;|&nbsp; <a href="https://buywithxp.com/">buywithxp.com</a> &nbsp;|&nbsp; Selling instead? <a href="https://www.sellwithxp.com/">sellwithxp.com</a> &nbsp;|&nbsp; Financial screening tool, not legal, tax or immigration advice.</p>
+</div></footer>
+
+<script>
+(function(){
+  const $=id=>document.getElementById(id);
+  const ids=['price','sde','salary','down','note','rate'];
+  const fmt=n=>'$'+Math.round(n).toLocaleString();
+  const pmt=(r,n,p)=>r===0?p/n:p*r/(1-Math.pow(1+r,-n));
+  const FEE=0.03, TERM=120, NOTE_RATE=0.07/12, NOTE_TERM=60, MIN_DSCR=1.25;
+  function run(){
+    const price=+$('price').value||0, sde=+$('sde').value||0, sal=+$('salary').value||0;
+    const down=(+$('down').value||0)/100, note=(+$('note').value||0)/100, rate=(+$('rate').value||0)/100/12;
+    const loan=price*(1-down-note)*(1+FEE), noteAmt=price*note;
+    const debt=(loan>0?pmt(rate,TERM,loan)*12:0)+(noteAmt>0?pmt(NOTE_RATE,NOTE_TERM,noteAmt)*12:0);
+    const avail=sde-sal, dscr=debt>0?avail/debt:0, left=avail-debt;
+    const perDollar=pmt(rate,TERM,1)*12*(1-down-note)*(1+FEE);
+    const notePmt=noteAmt>0?pmt(NOTE_RATE,NOTE_TERM,noteAmt)*12:0;
+    const maxP=perDollar>0?((avail/MIN_DSCR)-notePmt)/perDollar:0;
+    $('o_mult').textContent=sde>0?(price/sde).toFixed(2)+'x':'–';
+    $('o_loan').textContent=fmt(loan); $('o_debt').textContent=fmt(debt);
+    $('o_dscr').textContent=dscr?dscr.toFixed(2)+'x':'–'; $('o_left').textContent=fmt(left);
+    $('o_max').textContent=maxP>0?fmt(maxP):'–';
+    let v,why;
+    if(sde<=0||price<=0){v='Enter the listing numbers';why='';}
+    else if(dscr<1.15){v='Walk, or reprice';why='Below 1.15x coverage an SBA lender is unlikely to fund it. The deal works closer to '+fmt(maxP)+'.';}
+    else if(dscr<MIN_DSCR||left<sde*0.2){v='Negotiate';why='Coverage is thin. Aim for '+fmt(Math.min(maxP,price))+' or a larger seller note.';}
+    else{v='Terms work at asking';why='DSCR clears 1.25x with '+fmt(left)+' left after your salary. Now verify the add-backs.';}
+    $('o_verdict').firstChild.textContent=v; $('o_why').textContent=why;
+  }
+  ids.forEach(i=>$(i).addEventListener('input',run)); run();
+
+  // Checklist capture -> GHL (same inbound webhook the rest of buywithXP uses).
+  // source discriminator lets the workflow branch on it.
+  const HOOK='https://services.leadconnectorhq.com/hooks/UXYDkj4yhXizhVBLVOzq/webhook-trigger/92288a3f-3eca-4cf2-b766-b647484b740e';
+  const form=$('checklist'); if(form){
+    const loaded=Date.now();
+    form.addEventListener('submit',e=>{
+      e.preventDefault();
+      const fd=new FormData(form);
+      const done=()=>{form.style.display='none';$('checklist-done').style.display='';};
+      if((fd.get('company_url')||'')||(Date.now()-loaded)<800){done();return;}
+      const btn=form.querySelector('button'); const lbl=btn.textContent; btn.disabled=true; btn.textContent='Sending…';
+      const payload={source:'deal-analyzer-checklist',page:'buywithxp.com',submitted_at:new Date().toISOString(),
+        first_name:(fd.get('first_name')||'').toString().trim(),email:(fd.get('email')||'').toString().trim(),
+        tool:'Deal analyzer',asking_price:$('price').value,sde:$('sde').value,dscr:$('o_dscr').textContent,verdict:$('o_verdict').firstChild.textContent};
+      const q=new URLSearchParams(location.search);
+      ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','gclid','fbclid'].forEach(k=>{if(q.get(k))payload[k]=q.get(k);});
+      fetch(HOOK,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
+        .then(r=>{if(r&&r.ok===false)throw new Error('HTTP '+r.status);done();})
+        .catch(err=>{btn.disabled=false;btn.textContent=lbl;
+          const body=Object.keys(payload).map(k=>k+': '+payload[k]).join('\n');
+          const p=document.createElement('p');p.style.color='#B03A2E';p.style.fontSize='.9rem';
+          p.innerHTML='That did not send. <a href="mailto:Hello@XPBrokerage.com?subject='+encodeURIComponent('Due diligence checklist')+'&body='+encodeURIComponent(body)+'">Email us instead</a> — your details are filled in.';
+          if(!form.querySelector('p'))form.appendChild(p);});
+    });
+  }
+})();
+</script>
+</body>
+</html>
